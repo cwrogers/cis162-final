@@ -46,8 +46,11 @@
     <Compile Include="Earnings.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="DisplayObject.cs" />
+    <Compile Include="FileEarnings.cs" />
     <Compile Include="FileEmployee.cs" />
     <Compile Include="FilePaySum.cs" />
+    <Compile Include="FileShiftRates.cs" />
+    <Compile Include="FileTimeCard.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="PaySum.cs" />
     <Compile Include="PRLib.cs" />

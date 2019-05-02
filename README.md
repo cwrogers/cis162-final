@@ -11,7 +11,7 @@ You have been asked to develop a program to process a company’s payroll.   Pay
 *	Provide a means to synthesize multiple course learning objectives
 
 ### To do
-#### PayrollLibrary
+#### Payroll Library
 **Object classes**
 - [x] Employee.cs
 - [x] ShiftRates.cs
@@ -28,11 +28,10 @@ You have been asked to develop a program to process a company’s payroll.   Pay
 
 **FileControl Classes**
 - [x] FileEmployee.cs
-- [ ] FileShiftRates.cs
-- [ ] FilesTimecard.cs
+- [x] FileShiftRates.cs
+- [x] FilesTimecard.cs
 - [x] FilePaySum.cs
-- [ ] FileEarnings.cs
-
+- [x] FileEarnings.cs
 
 
  #### Time Card Program
