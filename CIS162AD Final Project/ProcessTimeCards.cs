@@ -17,11 +17,10 @@ namespace CIS162AD_Final_Project {
     class ProcessTimeCards {
 
         //  Declare class level variables.
-
         private static FileEmployee employeeFile = new FileEmployee();
         private static FileTimeCard timecardFile = new FileTimeCard();
+        private static FilePaySum paySumFile = new FilePaySum();
 
-        //  Main method.
         static void Main(string[] args) {
             
             //  Do Startup method.
@@ -34,6 +33,9 @@ namespace CIS162AD_Final_Project {
 
             //  Do Finish method.
             Shutdown();
+
+            Console.WriteLine(PRLib.CalculateShift(16.0f, 0.0f, 22.75f, 6f));
+
             Console.ReadKey();
         }
 
@@ -81,6 +83,7 @@ namespace CIS162AD_Final_Project {
             try {
                 employeeFile.OpenRead();
                 timecardFile.OpenRead();
+                paySumFile.OpenOutput();
             } catch (FileNotFoundException e) {
                 MessageBox.Show(e.Message, "File system error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -102,14 +105,59 @@ namespace CIS162AD_Final_Project {
             //  Close files.
             employeeFile.Close();
             timecardFile.Close();
+            paySumFile.Close();
         }
 
         //  ProcessMatch method.
         static void ProcessMatch() {
-            //  This is where you put the steps when both are equal.
-            //Console.WriteLine("Match!");
-            //Console.WriteLine(employeeFile.Data.EmployeeNumber.ToString() + " " + employeeFile.Data.otherData);
-            //Console.WriteLine(timecardFile.Data.EmployeeNumber.ToString() + " " + timecardFile.Data);
+
+            PaySum p = new PaySum();
+            p.EmployeeNumber = employeeFile.Data.EmployeeNumber;
+            if (!employeeFile.Data.PayType.Equals('S')) {
+                float[] wkOne = new float[7];
+                float[] wkTwo = new float[7];
+                Array.Copy(timecardFile.Data.GetDecElapsedTimes(),0, wkOne, 0, 7);
+                Array.Copy(timecardFile.Data.GetDecElapsedTimes(),7, wkTwo, 0, 7);
+
+                float wkOneTotalHours = PRLib.CalculateWeeklyHoursWorked(wkOne);
+                float wkTwoTotalHours = PRLib.CalculateWeeklyHoursWorked(wkTwo);
+                float totalWeekendHours = 0;
+                float shiftTwoHours = 0;
+                float shiftThreeHours = 0;
+
+                for (int i = 0; i < 14; i++) {
+                    totalWeekendHours += PRLib.CalculateWeekendHours(
+                        timecardFile.Data.GetDecClockInTimes(i), timecardFile.Data.GetDecClockOutTimes(i), ((i % 7) + 1).ToString()[0]);
+                    shiftTwoHours += PRLib.CalculateShift(16.0f, 0.0f,
+                        timecardFile.Data.GetDecClockInTimes(i), timecardFile.Data.GetDecClockOutTimes(i));
+
+                    shiftThreeHours += PRLib.CalculateShift(0.0f, 8.0f,
+                        timecardFile.Data.GetDecClockInTimes(i), timecardFile.Data.GetDecClockOutTimes(i));
+                }
+
+                p.WeekendHours = totalWeekendHours;
+                p.RegularHours = PRLib.CalculateRegularHours(wkOneTotalHours) + PRLib.CalculateRegularHours(wkTwoTotalHours);
+                p.OvertimeHours = PRLib.CalculateOvertimeHours(wkOneTotalHours) + PRLib.CalculateOvertimeHours(wkTwoTotalHours);
+                p.Shift2Hours = shiftTwoHours;
+                p.Shift3Hours = shiftThreeHours;
+                paySumFile.Data = p;
+                paySumFile.WriteRecord();
+
+
+                timecardFile.Data.DisplayData();
+                p.DisplayData();
+                //p.RegularHours = PRLib.CalculateRegularHours();
+                //timecardFile.Data.DisplayData();
+            } else {
+                p.RegularHours = 80;
+                p.WeekendHours = 0;
+                p.Shift2Hours = 0;
+                p.Shift3Hours = 0;
+                p.OvertimeHours = 0;
+                paySumFile.Data = p;
+                paySumFile.WriteRecord();
+            }
+
             employeeFile.ReadRecord();
             timecardFile.ReadRecord();
         }
@@ -122,7 +170,16 @@ namespace CIS162AD_Final_Project {
             if (employeeFile.Data.PayType.Equals('S')) {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Employee is Salary");
-                //generate paysum file
+                PaySum p = new PaySum();
+                p.EmployeeNumber = employeeFile.Data.EmployeeNumber;
+                p.RegularHours = 80;
+                p.WeekendHours = 0;
+                p.Shift2Hours = 0;
+                p.Shift3Hours = 0;
+                p.OvertimeHours = 0;
+                paySumFile.Data = p;
+                paySumFile.WriteRecord();
+
             } else {
                 Console.WriteLine("\n\n\nNo timecard found for employee: ");
                 employeeFile.Data.DisplayData();

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PayrollLibrary {
-    class PRLib {
+    public class PRLib {
 
         /// <summary>
         /// convert and rount time strings to dec
@@ -22,13 +22,13 @@ namespace PayrollLibrary {
             float hrs = float.Parse(splitStr[0]);
             float mm = float.Parse(splitStr[1]);
 
-            if(mm <= 7) {
+            if (mm <= 7) {
                 mm = 0f;
-            } else if(mm <= 22) {
+            } else if (mm <= 22) {
                 mm = 0.25f;
-            } else if(mm <= 37) {
+            } else if (mm <= 37) {
                 mm = 0.5f;
-            } else if(mm <= 52) {
+            } else if (mm <= 52) {
                 mm = 0.75f;
             } else {
                 mm = 1f;
@@ -44,7 +44,7 @@ namespace PayrollLibrary {
         /// <returns>elapsed amount of time</returns>
         private static float CalculateElapsedTime(float timeOne, float timeTwo) {
             //if overnight
-            if(timeOne > timeTwo) {
+            if (timeOne > timeTwo) {
                 timeTwo += 24;
             }
             //subtract and return
@@ -98,9 +98,9 @@ namespace PayrollLibrary {
             float ssBaseLimit = 132900f;
             float taxRate = 0.062f;
             float ssTax;
-            if(y2dEarnings > ssBaseLimit) {
+            if (y2dEarnings > ssBaseLimit) {
                 ssTax = 0;
-            } else if(y2dEarnings + grossPay < ssBaseLimit) {
+            } else if (y2dEarnings + grossPay < ssBaseLimit) {
                 ssTax = grossPay * taxRate;
             } else {
                 ssTax = (ssBaseLimit - y2dEarnings) * taxRate;
@@ -137,7 +137,7 @@ namespace PayrollLibrary {
         public static float CalculateDeduction(float grossPay, char deductionCode, float deductionValue) {
             float deduction;
 
-            switch(deductionCode) {
+            switch (deductionCode) {
                 case 'N':
                     deduction = 0;
                     break;
@@ -162,7 +162,7 @@ namespace PayrollLibrary {
         /// <returns>total of weekly hours worked</returns>
         public static float CalculateWeeklyHoursWorked(float[] weeklyHours) {
             float sum = 0;
-            foreach(float hours in weeklyHours)
+            foreach (float hours in weeklyHours)
                 sum += hours;
             return sum;
         }
@@ -193,21 +193,21 @@ namespace PayrollLibrary {
         /// <param name="day">clock in day</param>
         /// <returns></returns>
         public static float CalculateWeekendHours(float clockIn, float clockOut, char day) {
-            switch(day) {
+            switch (day) {
                 case '5':
                     //Friday
-                    if(clockOut < clockIn)
+                    if (clockOut < clockIn)
                         return clockOut;
                     else
                         return 0;
                 case '6':
                     //Saturday
-                    if(clockOut < clockIn)
+                    if (clockOut < clockIn)
                         return (clockOut + 24) - clockIn;
                     else
                         return clockOut - clockIn;
                 case '7':
-                    if(clockOut < clockIn)
+                    if (clockOut < clockIn)
                         return 24 - clockIn;
                     else
                         return clockOut - clockIn;
@@ -226,49 +226,49 @@ namespace PayrollLibrary {
         public static float CalculateFederalWithholdingTax(float grossPay, char maritalStatus, int numExemptions) {
             float taxableEarnings = grossPay - (numExemptions * 161.5f);
             float tax;
-            if(maritalStatus == 'm') {
-                if(taxableEarnings > 454 && taxableEarnings <= 1200) {
+            if (maritalStatus == 'm') {
+                if (taxableEarnings > 454 && taxableEarnings <= 1200) {
                     tax = (taxableEarnings - 454) * .1f;
-                } else if(taxableEarnings > 1200 && taxableEarnings <= 3490) {
+                } else if (taxableEarnings > 1200 && taxableEarnings <= 3490) {
                     tax = (taxableEarnings - 1200) * .12f;
                     tax += 74.6f;
-                } else if(taxableEarnings > 3490 && taxableEarnings <= 6931) {
+                } else if (taxableEarnings > 3490 && taxableEarnings <= 6931) {
                     tax = (taxableEarnings - 3490) * .22f;
                     tax += 349.6f;
-                } else if(taxableEarnings > 6931 && taxableEarnings <= 12817) {
+                } else if (taxableEarnings > 6931 && taxableEarnings <= 12817) {
                     tax = (taxableEarnings - 6931) * .24f;
                     tax += 1106.42f;
-                } else if(taxableEarnings > 12817 && taxableEarnings <= 16154) {
+                } else if (taxableEarnings > 12817 && taxableEarnings <= 16154) {
                     tax = (taxableEarnings - 12817) * .32f;
                     tax += 2519.06f;
-                } else if(taxableEarnings > 16154 && taxableEarnings <= 24006) {
+                } else if (taxableEarnings > 16154 && taxableEarnings <= 24006) {
                     tax = (taxableEarnings - 16154) * .35f;
                     tax += 3586.9f;
-                } else if(taxableEarnings > 24006) {
+                } else if (taxableEarnings > 24006) {
                     tax = (taxableEarnings - 24006) * .37f;
                     tax += 6335.1f;
                 } else {
                     tax = 0;
                 }
             } else {
-                if(taxableEarnings > 146 && taxableEarnings <= 519) {
+                if (taxableEarnings > 146 && taxableEarnings <= 519) {
                     tax = (taxableEarnings - 146) * .1f;
-                } else if(taxableEarnings > 519 && taxableEarnings <= 1664) {
+                } else if (taxableEarnings > 519 && taxableEarnings <= 1664) {
                     tax = (taxableEarnings - 519) * .12f;
                     tax += 37.3f;
-                } else if(taxableEarnings > 1664 && taxableEarnings <= 3385) {
+                } else if (taxableEarnings > 1664 && taxableEarnings <= 3385) {
                     tax = (taxableEarnings - 1664) * .22f;
                     tax += 174.7f;
-                } else if(taxableEarnings > 3385 && taxableEarnings <= 6328) {
+                } else if (taxableEarnings > 3385 && taxableEarnings <= 6328) {
                     tax = (taxableEarnings - 3385) * .24f;
                     tax += 553.32f;
-                } else if(taxableEarnings > 6328 && taxableEarnings <= 7996) {
+                } else if (taxableEarnings > 6328 && taxableEarnings <= 7996) {
                     tax = (taxableEarnings - 6328) * .33f;
                     tax += 1259.64f;
-                } else if(taxableEarnings > 7996 && taxableEarnings <= 19773) {
+                } else if (taxableEarnings > 7996 && taxableEarnings <= 19773) {
                     tax = (taxableEarnings - 7996) * .35f;
                     tax += 1793.4f;
-                } else if(taxableEarnings > 19773) {
+                } else if (taxableEarnings > 19773) {
                     tax = (taxableEarnings - 19773) * .37f;
                     tax += 5915.35f;
                 } else {
@@ -277,6 +277,69 @@ namespace PayrollLibrary {
             }
             return tax;
         }
+
+
+        //public static float CalculateWeeklyShiftHours(float[] weekHours)
+
+        public static float CalculateShift(float startTime, float endTime,
+    float clockIn, float clockOut) {
+            //  Declare variables.
+            float shiftHours;
+            bool overnightClock = false;
+            bool overnightShift = false;
+
+
+            //  If the shift endTime is less than the shift startTime, 
+            //  add 24 hours to the shift endTime.
+            if (endTime < startTime) {
+                endTime += 24.00f;
+                overnightShift = true;
+            }
+
+            //  If the clockOut time is greater than the clockIn time, 
+            //  add 24 hours to the clockOut time.
+            if (clockOut < clockIn) {
+                clockOut += 24.00f;
+                overnightClock = true;
+            }
+
+
+            //  If not overnight shift, but overnight clock, 
+            //  subtract 24.0 hours from both the clock in and clock out.
+            if (!overnightShift) {
+                if (overnightClock) {
+                    clockIn -= 24.0f;
+                    clockOut -= 24.0f;
+                }
+            }
+
+            //  If the clockIn time is before the shift startTime, 
+            //  set the clockIn time to the startTime.
+            if (clockIn < startTime) {
+                clockIn = startTime;
+            }
+
+            //  If the clockOut time exceeds the shift endTime, 
+            //  set the clockOut time to the endTime.
+            if (clockOut > endTime) {
+                clockOut = endTime;
+            }
+
+            //  ShiftHours is the difference between clockOut and clockIn.
+            shiftHours = clockOut - clockIn;
+
+            //  if the shiftHours are negative, set shiftHours to zero.
+            if (shiftHours < 0) {
+                shiftHours = 0;
+            }
+
+            //  Return the shiftHours.
+            return shiftHours;
+        }
+
+
+
+
 
         /// <summary>
         /// returns calculated net pay

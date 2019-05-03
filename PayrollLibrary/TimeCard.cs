@@ -48,6 +48,7 @@ namespace PayrollLibrary {
             }
         }
 
+        
 
 
         /// <summary>
@@ -170,8 +171,8 @@ namespace PayrollLibrary {
             Console.WriteLine(this.GetType().FullName);
             Console.WriteLine("Employee number: {0}", this.EmployeeNumber);
             Console.WriteLine("Raw clock times:      [{0}]", string.Join(", ", this.rawClockTimes.Cast<string>()));
-            Console.WriteLine("Dec Clock times: [{0}])", string.Join(", ", this.decClockTimes.Cast<float>()));
-            Console.WriteLine("Elapsed times:       [{0}]", string.Join(", ", this.GetDecElapsedTimes()));
+            Console.WriteLine("Dec Clock times:      [{0}]", string.Join(", ", this.decClockTimes.Cast<float>()));
+            Console.WriteLine("Elapsed times:        [{0}]", string.Join(", ", this.GetDecElapsedTimes()));
         }
 
         public void Parse(string str) {
