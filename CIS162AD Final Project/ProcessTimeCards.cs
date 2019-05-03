@@ -33,8 +33,7 @@ namespace CIS162AD_Final_Project {
 
             //  Do Finish method.
             Shutdown();
-
-            Console.WriteLine(PRLib.CalculateShift(16.0f, 0.0f, 22.75f, 6f));
+            ProcessPayroll.Main(args);
 
             Console.ReadKey();
         }
@@ -76,7 +75,7 @@ namespace CIS162AD_Final_Project {
                 }
             }
         }
-
+        
         //  Startup method.
         static void Startup() {
             //  Open the files.
@@ -90,7 +89,7 @@ namespace CIS162AD_Final_Project {
             }
 
             //  IF the files opened, read the first record.
-            if (employeeFile.IsOpen && timecardFile.IsOpen) {
+            if (employeeFile.IsOpen && timecardFile.IsOpen && paySumFile.IsOpen) {
                 //  Read a record from each file.
                 employeeFile.ReadRecord();
                 timecardFile.ReadRecord();
@@ -144,8 +143,8 @@ namespace CIS162AD_Final_Project {
                 paySumFile.WriteRecord();
 
 
-                timecardFile.Data.DisplayData();
-                p.DisplayData();
+                //timecardFile.Data.DisplayData();
+                //p.DisplayData();
                 //p.RegularHours = PRLib.CalculateRegularHours();
                 //timecardFile.Data.DisplayData();
             } else {

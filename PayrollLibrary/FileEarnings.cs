@@ -14,7 +14,7 @@ namespace PayrollLibrary {
         private Earnings data;
         private StreamReader reader;
         private StreamWriter writer;
-        private string filename = @"data/shiftrates.csv";
+        private string filename = @"data/earnings.csv";
         private bool isOpen = false;
         private bool isEOF = false;
 
@@ -74,7 +74,7 @@ namespace PayrollLibrary {
                     IsOpen = false;
                 }
             } else {
-                throw new FileNotFoundException();
+                throw new FileNotFoundException(this.filename + " was not found");
             }
 
             return s;
@@ -98,7 +98,7 @@ namespace PayrollLibrary {
                     IsOpen = false;
                 }
             } else {
-                throw new FileNotFoundException();
+                throw new FileNotFoundException(this.filename + " was not found");
             }
 
             return s;

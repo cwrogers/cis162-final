@@ -77,7 +77,7 @@ namespace PayrollLibrary {
                     IsOpen = false;
                 }
             } else {
-                throw new FileNotFoundException();
+                throw new FileNotFoundException(this.filename + " was not found");
             }
 
             return s;
@@ -101,7 +101,7 @@ namespace PayrollLibrary {
                     IsOpen = false;
                 }
             } else {
-                throw new FileNotFoundException();
+                throw new FileNotFoundException(this.filename + " was not found");
             }
 
             return s;

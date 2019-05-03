@@ -52,7 +52,7 @@ namespace PayrollLibrary {
                     IsOpen = false;
                 }
             } else {
-                throw new FileNotFoundException();
+                throw new FileNotFoundException(this.filename + " was not found");
             }
 
             return s;
@@ -76,7 +76,7 @@ namespace PayrollLibrary {
                     IsOpen = false;
                 }
             } else {
-                throw new FileNotFoundException();
+                throw new FileNotFoundException(this.filename + " was not found");
             }
 
             return s;
@@ -163,6 +163,10 @@ namespace PayrollLibrary {
                 s = true;
             } catch (IOException e) {
                 MessageBox.Show(e.Message, "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } catch {
+
+                MessageBox.Show("An error has occured", "Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return s;

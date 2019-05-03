@@ -45,10 +45,10 @@ namespace PayrollLibrary {
             String[] s = str.Split(',');
             this.EmployeeNumber = int.Parse(s[0]);
             this.RegularHours = float.Parse(s[1]);
-            this.OvertimeHours = float.Parse(s[1]);
-            this.Shift2Hours = float.Parse(s[1]);
-            this.Shift3Hours = float.Parse(s[1]);
-            this.WeekendHours = float.Parse(s[1]);
+            this.OvertimeHours = float.Parse(s[2]);
+            this.Shift2Hours = float.Parse(s[3]);
+            this.Shift3Hours = float.Parse(s[4]);
+            this.WeekendHours = float.Parse(s[5]);
         }
     }
 }
