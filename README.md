@@ -39,7 +39,7 @@ You have been asked to develop a program to process a company’s payroll.   Pay
 
 
  #### Payroll Calculation
- - [ ] ProcessTimecards.cs
+ - [ ] ProcessPayroll.cs
 
 
  #### Check Display
