@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5B9DB828-2EF7-409D-9875-8D103BE7134A}</ProjectGuid>
+    <ProjectGuid>{4A57CE7F-831F-480F-A3E8-74E8ACF6C398}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CIS162AD_Final_Project</RootNamespace>
-    <AssemblyName>CIS162AD Final Project</AssemblyName>
+    <RootNamespace>ProcessPayroll</RootNamespace>
+    <AssemblyName>ProcessPayroll</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>CIS162AD_Final_Project.ProcessTimeCards</StartupObject>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,20 +44,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProcessTimeCards.cs" />
+    <Compile Include="ProcessPayroll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DisplayChecks\DisplayChecks.csproj">
+      <Project>{438d9b89-c31c-4e7e-b5fc-de06b64eed7c}</Project>
+      <Name>DisplayChecks</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PayrollLibrary\PayrollLibrary.csproj">
       <Project>{078f624c-875b-470e-8eb6-a46f688eaeac}</Project>
       <Name>PayrollLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProcessPayroll\ProcessPayroll.csproj">
-      <Project>{4a57ce7f-831f-480f-a3e8-74e8acf6c398}</Project>
-      <Name>ProcessPayroll</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

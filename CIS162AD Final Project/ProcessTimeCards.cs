@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ProcessPayroll;
 using PayrollLibrary;
 
 namespace CIS162AD_Final_Project {
@@ -33,7 +34,7 @@ namespace CIS162AD_Final_Project {
 
             //  Do Finish method.
             Shutdown();
-            ProcessPayroll.Main(args);
+            ProcessPayroll.ProcessPayroll.Main(args);
 
             Console.ReadKey();
         }

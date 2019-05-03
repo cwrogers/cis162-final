@@ -6,9 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DisplayChecks;
 
-namespace CIS162AD_Final_Project {
-    class ProcessPayroll {
+namespace ProcessPayroll {
+    public class ProcessPayroll {
         //  Declare class level variables.
         static private FileEmployee employeeFile = new FileEmployee();
         static private FilePaySum paysumFile = new FilePaySum();
@@ -16,6 +17,10 @@ namespace CIS162AD_Final_Project {
         static private FileShiftRates shiftRatesFile = new FileShiftRates();
 
         static private ShiftRates[] shiftRates = new ShiftRates[3];
+
+
+
+        static private int checkNumber = 305612;
 
         //  Main method.
         public static void Main(string[] args) {
@@ -32,6 +37,8 @@ namespace CIS162AD_Final_Project {
 
             //  Do Finish method.
             Shutdown();
+
+            DisplayChecks.DisplayChecks.Main();
             Console.ReadKey();
         }
 
@@ -159,6 +166,15 @@ namespace CIS162AD_Final_Project {
 
             earn.TotalVoluntaryDeductions = deductionOne + deductionTwo + deductionThree;
             earn.NetPay = PRLib.CalculateNetPay(earn.GrossPay, earn.FederalWithholding, earn.SsWithholding, earn.MedicareWithholding, deductionOne, deductionTwo, deductionThree);
+            earn.CheckDate = "5/5/2019";
+            earn.CheckNumber = checkNumber;
+
+            checkNumber++;
+
+            earningsFile.Data = earn;
+            earningsFile.WriteRecord();
+
+            DisplayChecks.DisplayChecks.AddIDName(earn.EmployeeNumber, employeeFile.Data.FirstName + " " + employeeFile.Data.LastName);
 
             earn.DisplayData();
             Console.WriteLine("\n\n\n\n\n");
