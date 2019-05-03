@@ -39,7 +39,7 @@ namespace ProcessPayroll {
             Shutdown();
 
             DisplayChecks.DisplayChecks.Main();
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         //  Processing method.

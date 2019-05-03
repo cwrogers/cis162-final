@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIS162AD Final Project", "CIS162AD Final Project\CIS162AD Final Project.csproj", "{5B9DB828-2EF7-409D-9875-8D103BE7134A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessTimeCards", "CIS162AD Final Project\ProcessTimeCards.csproj", "{5B9DB828-2EF7-409D-9875-8D103BE7134A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayrollLibrary", "PayrollLibrary\PayrollLibrary.csproj", "{078F624C-875B-470E-8EB6-A46F688EAEAC}"
 EndProject

@@ -43,5 +43,5 @@ You have been asked to develop a program to process a company’s payroll.   Pay
 
 
  #### Check Display
- - [ ] Design GUI
- - [ ] CheckDisplay.cs
+ - [x] Design GUI
+ - [x] CheckDisplay.cs

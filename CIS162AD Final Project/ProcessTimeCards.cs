@@ -32,11 +32,11 @@ namespace CIS162AD_Final_Project {
                 Processing();
             }
 
-            //  Do Finish method.
+            //Close the files and start processing payroll.
             Shutdown();
             ProcessPayroll.ProcessPayroll.Main(args);
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
 
         //  Processing method.
