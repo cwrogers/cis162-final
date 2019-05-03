@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PayrollLibrary {
-    class FileTimeCard {
+    public class FileTimeCard {
 
 
         //  vars and properties

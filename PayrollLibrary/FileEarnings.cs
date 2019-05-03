@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PayrollLibrary {
-    class FileEarnings {
+    public class FileEarnings {
         private Earnings data;
         private StreamReader reader;
         private StreamWriter writer;

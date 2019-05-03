@@ -35,7 +35,7 @@ You have been asked to develop a program to process a company’s payroll.   Pay
 
 
  #### Time Card Program
- - [ ] ProcessTimecards.cs
+ - [x] ProcessTimecards.cs
 
 
  #### Payroll Calculation

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PayrollLibrary {
-    class FileShiftRates {
+    public class FileShiftRates {
         private ShiftRates data;
         private StreamReader reader;
         private StreamWriter writer;
